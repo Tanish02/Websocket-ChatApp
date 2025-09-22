@@ -28,7 +28,7 @@ export default function App() {
         setMessages((prev) => [...prev, msg]);
       });
 
-      // Display who is typing to other users
+      // Display who is typing to other users in the room
       socket.current.on("typing", (userName) => {
         setTypers((prev) => {
           const isExist = prev.find((typer) => typer === userName);
@@ -45,6 +45,7 @@ export default function App() {
       });
     });
 
+    // cleanup function
     return () => {
       socket.current.off("roomNotice");
       socket.current.off("chatMessage");
@@ -59,6 +60,7 @@ export default function App() {
       clearTimeout(timer.current);
     }
 
+    // message (*user is writing*) timer and Debounce function
     timer.current = setTimeout(() => {
       socket.current.emit("stopTyping", userName);
     }, 1000);
