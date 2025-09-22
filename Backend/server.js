@@ -25,8 +25,13 @@ io.on("connection", (socket) => {
     // send to all user who joined the room
     // io.to(ROOM).emit("roomNotice", userName);
 
-    // Brodcast when a user connects
+    // Brodcast when a user connects to other users except himself
     socket.to(ROOM).emit("roomNotice", userName);
+  });
+
+  // send mesage to user who joined the room
+  socket.on("chatMessage", (msg) => {
+    socket.to(ROOM).emit("chatMessage", msg);
   });
 });
 

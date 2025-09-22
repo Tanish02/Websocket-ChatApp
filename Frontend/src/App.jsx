@@ -21,9 +21,10 @@ export default function App() {
         console.log(`${userName} joined to group!`);
       });
 
+      // sending message to other users in the room
       socket.current.on("chatMessage", (msg) => {
         // push to existing messages list
-        console.log("msg", msg);
+        //console.log("msg", msg);
         setMessages((prev) => [...prev, msg]);
       });
 
@@ -92,7 +93,7 @@ export default function App() {
     const t = text.trim();
     if (!t) return;
 
-    // USER MESSAGE
+    // USER MESSAGE Format
     const msg = {
       id: Date.now(),
       sender: userName,
