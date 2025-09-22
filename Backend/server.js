@@ -22,8 +22,11 @@ io.on("connection", (socket) => {
     console.log(`${userName}: joined to room`);
     await socket.join(ROOM);
 
-    // send to all
-    io.to(ROOM).emit("roomNotice", userName);
+    // send to all user who joined the room
+    // io.to(ROOM).emit("roomNotice", userName);
+
+    // Brodcast when a user connects
+    socket.to(ROOM).emit("roomNotice", userName);
   });
 });
 

@@ -16,6 +16,7 @@ export default function App() {
     socket.current = connectWS();
 
     socket.current.on("connect", () => {
+      //
       socket.current.on("roomNotice", (userName) => {
         console.log(`${userName} joined to group!`);
       });
