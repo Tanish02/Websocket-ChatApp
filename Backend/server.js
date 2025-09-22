@@ -13,8 +13,15 @@ const io = new Server(server, {
   },
 });
 
+const ROOM = "ChatRoom";
+
 io.on("connection", (socket) => {
   console.log("a user connected", socket.id);
+
+  socket.on("joinRoom", async (userName) => {
+    console.log(`${userName}: joined to room`);
+    await socket.join(ROOM);
+  });
 });
 
 app.get("/", (req, res) => {
