@@ -28,6 +28,7 @@ export default function App() {
         setMessages((prev) => [...prev, msg]);
       });
 
+      // Display who is typing to other users
       socket.current.on("typing", (userName) => {
         setTypers((prev) => {
           const isExist = prev.find((typer) => typer === userName);
